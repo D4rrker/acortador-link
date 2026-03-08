@@ -1,0 +1,12 @@
+package-lock.json
+package.json
+.prettierignore
+.prettierrc
+.vscode
+.next
+node_modules
+pnpm-lock.yaml
+dist
+build
+pnpm-workspace.yaml
+README.md
