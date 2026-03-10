@@ -7,3 +7,5 @@ export const MONTHLY_LIMITS: TMONTHLY_LIMITS = {
   free: FREE_MONTHLY_LIMIT,
   pro: FREE_MONTHLY_LIMIT,
 };
+
+// export const COUNTRY_LIMIT_FREE = 3;
