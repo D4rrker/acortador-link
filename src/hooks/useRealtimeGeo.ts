@@ -22,7 +22,7 @@ export function useRealtimeGeo(
   }, [initialData]);
 
   useEffect(() => {
-    if (plan === 'free') return;
+    // if (plan === 'free') return;
 
     const channelName = `realtime-geo-${linkId || 'global'}`;
 

@@ -21,7 +21,7 @@ export function useRealtimeClicks({
   }, [initialEvents]);
 
   useEffect(() => {
-    if (plan === 'free' || !plan) return;
+    // if (plan === 'free' || !plan) return;
 
     const channelName = `realtime-clicks-${linkId || 'global'}`;
 
