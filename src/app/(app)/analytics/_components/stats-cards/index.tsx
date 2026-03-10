@@ -34,19 +34,14 @@ export default function StatsCards({ stats }: StatsCardsProps) {
       <AnalyticsCard
         title="TOTAL CLICS"
         value={stats.totalClicks.toLocaleString()}
-        icon={
-          <MousePointer2
-            size={18}
-            className="text-blue-500 dark:text-gray-50"
-          />
-        }
+        icon={<MousePointer2 size={18} className="text-blue-500" />}
         subtext={<GrowthBadge growth={stats.growth} />}
       />
 
       <AnalyticsCard
         title="TOP PAÍS"
         value={stats.topCountry?.name || '-'}
-        icon={<Globe size={18} className="text-gray-400 dark:text-gray-50" />}
+        icon={<Globe size={18} className="text-gray-400" />}
         subtext={
           stats.topCountry ? (
             <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -54,9 +49,7 @@ export default function StatsCards({ stats }: StatsCardsProps) {
                 key={stats.topCountry.code}
                 code={stats.topCountry.code}
               />
-              <span className="dark:text-gray-300">
-                {stats.topCountry.percent}% del tráfico
-              </span>
+              <span>{stats.topCountry.percent}% del tráfico</span>
             </div>
           ) : (
             <span className="text-xs text-gray-400">Sin datos suficientes</span>
@@ -67,12 +60,10 @@ export default function StatsCards({ stats }: StatsCardsProps) {
       <AnalyticsCard
         title="TOP DISPOSITIVO"
         value={stats.topDevice?.name || '-'}
-        icon={
-          <Smartphone size={18} className="text-gray-400 dark:text-gray-50" />
-        }
+        icon={<Smartphone size={18} className="text-gray-400" />}
         subtext={
           stats.topDevice ? (
-            <span className="text-xs text-gray-500 dark:text-gray-300">
+            <span className="text-xs text-gray-500">
               {stats.topDevice.percent}% usa{' '}
               <span className="lowercase">{stats.topDevice.name}</span>
             </span>
@@ -83,9 +74,9 @@ export default function StatsCards({ stats }: StatsCardsProps) {
       <AnalyticsCard
         title="ÚLTIMO CLIC"
         value={stats.latestClick || '-'}
-        icon={<Clock size={18} className="text-gray-400 dark:text-gray-50" />}
+        icon={<Clock size={18} className="text-gray-400" />}
         subtext={
-          <span className="text-xs text-gray-400 dark:text-gray-300">
+          <span className="text-xs text-gray-400">
             {stats.latestClick
               ? 'Recién actualizado'
               : 'Sin actividad reciente'}

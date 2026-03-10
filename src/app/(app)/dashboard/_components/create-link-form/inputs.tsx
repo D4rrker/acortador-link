@@ -9,7 +9,7 @@ export function UrlInput({ error }: InputProps) {
     <div className="relative space-y-2 md:col-span-2">
       <label
         htmlFor="originalUrl"
-        className="text-sm font-medium text-gray-700 dark:text-gray-300"
+        className="text-sm font-medium text-gray-700"
       >
         Destino
       </label>
@@ -41,21 +41,19 @@ export function SlugInput() {
         htmlFor="customSlug"
         className="flex justify-between text-sm font-medium text-gray-700"
       >
-        <span className="dark:text-gray-300">Alias (Opcional)</span>
+        <span>Alias (Opcional)</span>
       </label>
       <div className="border-border flex overflow-hidden rounded-md border focus-within:border-gray-500 focus-within:ring-1 focus-within:ring-gray-500 focus-within:outline-none">
-        <div className="flex items-center gap-2 border-r border-gray-200 bg-gray-50 px-3 py-2.5 dark:border-zinc-600 dark:bg-zinc-700">
+        <div className="flex items-center gap-2 border-r border-gray-200 bg-gray-50 px-3 py-2.5">
           <Globe size={14} className="text-gray-400" />
-          <span className="text-sm font-medium text-gray-500 dark:text-gray-300">
-            linkpro.li/
-          </span>
+          <span className="text-sm font-medium text-gray-500">linkpro.li/</span>
         </div>
         <input
           id="customSlug"
           name="customSlug"
           type="text"
           placeholder="aleatorio"
-          className="flex-1 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none placeholder:text-gray-300 dark:border-gray-400 dark:bg-zinc-800 dark:text-gray-50 dark:placeholder:text-zinc-600 dark:focus:bg-zinc-800"
+          className="flex-1 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none placeholder:text-gray-300"
         />
       </div>
     </div>

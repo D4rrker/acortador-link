@@ -14,7 +14,7 @@ export default function ReferrerRow({ item }: { item: MetricResult }) {
   return (
     <div className="group flex items-center justify-between py-1">
       <div className="flex items-center gap-3 overflow-hidden">
-        <div className="border-border bg-muted/40 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-colors group-hover:border-blue-200 group-hover:bg-blue-50 dark:group-hover:bg-transparent">
+        <div className="border-border bg-muted/40 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-colors group-hover:border-blue-200 group-hover:bg-blue-50">
           {showIcon ? (
             <Image
               src={getFaviconUrl(domain)}

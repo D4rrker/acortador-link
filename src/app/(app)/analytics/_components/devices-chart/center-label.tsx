@@ -18,14 +18,14 @@ export default function CenterLabel({
         <tspan
           x={viewBox.cx}
           y={viewBox.cy}
-          className="fill-gray-900 text-2xl font-bold dark:fill-gray-50"
+          className="fill-gray-900 text-2xl font-bold"
         >
           {total.toLocaleString()}
         </tspan>
         <tspan
           x={viewBox.cx}
           y={(viewBox.cy || 0) + 20}
-          className="fill-gray-500 text-xs font-medium dark:fill-gray-300"
+          className="fill-gray-500 text-xs font-medium"
         >
           Clics
         </tspan>

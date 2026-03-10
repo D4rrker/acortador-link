@@ -20,9 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      className={`${inter.variable} bg-gray-100 antialiased dark:bg-zinc-900`}
-    >
+    <div className={`${inter.variable} bg-gray-100 antialiased`}>
       <Header />
       {children}
     </div>

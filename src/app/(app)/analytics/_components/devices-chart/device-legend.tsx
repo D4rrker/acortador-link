@@ -16,13 +16,13 @@ export default function DeviceLegend({ data }: { data: MetricResult[] }) {
               style={{ backgroundColor: COLORS[index % COLORS.length] }}
             />
             <span
-              className="truncate text-gray-700 dark:text-gray-50"
+              className="truncate text-gray-700"
               title={getDeviceName(item.name)}
             >
               {getDeviceName(item.name)}
             </span>
           </div>
-          <span className="ml-2 font-bold text-gray-900 tabular-nums dark:text-gray-100">
+          <span className="ml-2 font-bold text-gray-900 tabular-nums">
             {item.percent}%
           </span>
         </div>

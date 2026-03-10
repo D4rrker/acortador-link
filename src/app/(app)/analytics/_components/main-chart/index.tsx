@@ -53,7 +53,7 @@ export default function MainChart({ events, isPro }: MainChartProps) {
           </CardDescription>
         </div>
 
-        <div className="bg-muted/20 flex items-center gap-1 border-t px-4 sm:border-t-0 sm:border-l dark:bg-transparent">
+        <div className="bg-muted/20 flex items-center gap-1 border-t px-4 sm:border-t-0 sm:border-l">
           {RANGES.map((range) => {
             const isLocked = !isPro && range.isPro;
 
@@ -66,7 +66,7 @@ export default function MainChart({ events, isPro }: MainChartProps) {
                     ? 'bg-white text-gray-900 shadow-sm'
                     : isLocked
                       ? 'cursor-not-allowed text-gray-500 opacity-50'
-                      : 'cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-gray-400'
+                      : 'cursor-pointer text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {range.label}

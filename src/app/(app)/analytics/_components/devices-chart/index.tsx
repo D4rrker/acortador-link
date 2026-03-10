@@ -33,7 +33,7 @@ export default function DevicesChart({ data }: { data: MetricResult[] }) {
   return (
     <Card className="flex h-full flex-col shadow-sm">
       <CardHeader className="shrink-0 items-center pb-2">
-        <CardTitle className="self-start text-base font-semibold text-gray-900 dark:text-gray-50">
+        <CardTitle className="self-start text-base font-semibold text-gray-900">
           Dispositivos
         </CardTitle>
         <CardDescription className="text-muted-foreground text-xs">
@@ -66,9 +66,7 @@ export default function DevicesChart({ data }: { data: MetricResult[] }) {
                           <span className="font-semibold text-gray-900">
                             {getDeviceName(d.name)}
                           </span>
-                          <span className="dark:text-zinc-700">
-                            : {d.value} clics
-                          </span>
+                          <span>: {d.value} clics</span>
                         </div>
                       );
                     }

@@ -29,7 +29,7 @@ export default function GeoAnalysisView({ initialData }: Props) {
     <Card className="h-full">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-base font-semibold text-gray-900 dark:text-gray-50">
+          <CardTitle className="text-base font-semibold text-gray-900">
             Top países con más clics
           </CardTitle>
           <Globe size={16} className="text-gray-400" />
@@ -54,10 +54,10 @@ export default function GeoAnalysisView({ initialData }: Props) {
           </div>
         </div>
 
-        <div className="flex items-center justify-center border-t border-gray-100 pt-4 dark:border-0">
+        <div className="flex items-center justify-center border-t border-gray-100 pt-4">
           <Link
             href="/analytics"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 transition-colors hover:text-blue-700 hover:underline dark:text-blue-400"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 transition-colors hover:text-blue-700 hover:underline"
           >
             Ver reporte completo
             <ExternalLink size={10} />

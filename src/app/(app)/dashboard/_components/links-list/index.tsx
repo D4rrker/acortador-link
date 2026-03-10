@@ -38,7 +38,7 @@ export default function LinksList({
 
   if (!links.length) {
     return (
-      <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center text-gray-500 dark:text-gray-300">
+      <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center text-gray-500">
         No tienes enlaces creados aún.
       </div>
     );

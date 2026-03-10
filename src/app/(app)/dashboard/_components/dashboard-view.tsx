@@ -13,11 +13,11 @@ interface DashboardViewProps {
 export default function DashboardView({ links, geoData }: DashboardViewProps) {
   return (
     <div className="mx-auto flex h-full w-full max-w-7xl flex-col gap-6">
-      <div className="flex shrink-0 flex-col gap-1 border-b border-gray-200 pb-5 dark:border-zinc-700">
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
+      <div className="flex shrink-0 flex-col gap-1 border-b border-gray-200 pb-5">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900">
           Dashboard
         </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-300">
+        <p className="text-sm text-gray-500">
           Crea, gestiona y analiza tus enlaces.
         </p>
       </div>

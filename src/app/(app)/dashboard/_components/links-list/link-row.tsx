@@ -17,7 +17,7 @@ export function LinkRow({ link }: { link: ILinkData }) {
       <TableCell className="px-6 py-4">
         <div className="flex items-center gap-3">
           {/* Fondo y borde adaptados al modo oscuro */}
-          <div className="h-10 w-10 shrink-0 rounded-full border border-gray-100 bg-white p-1.5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="h-10 w-10 shrink-0 rounded-full border border-gray-100 bg-white p-1.5 shadow-sm">
             <Image
               width={48}
               height={48}
@@ -30,7 +30,7 @@ export function LinkRow({ link }: { link: ILinkData }) {
             <a
               href={shortUrl}
               target="_blank"
-              className="flex items-center gap-1 text-sm font-semibold text-gray-900 transition-colors hover:text-blue-600 dark:text-zinc-100 dark:hover:text-blue-400"
+              className="flex items-center gap-1 text-sm font-semibold text-gray-900 transition-colors hover:text-blue-600"
             >
               /{link.short_code}
               <ExternalLink
@@ -38,26 +38,24 @@ export function LinkRow({ link }: { link: ILinkData }) {
                 className="opacity-0 group-hover:opacity-100"
               />
             </a>
-            <span className="text-xs text-gray-400 dark:text-zinc-500">
-              linkpro.com
-            </span>
+            <span className="text-xs text-gray-400">linkpro.com</span>
           </div>
         </div>
       </TableCell>
 
       <TableCell className="hidden px-6 py-4 md:table-cell">
-        <div className="max-w-xs truncate text-sm text-gray-500 dark:text-zinc-400">
+        <div className="max-w-xs truncate text-sm text-gray-500">
           {link.original_url}
         </div>
       </TableCell>
 
       <TableCell className="px-6 py-4 text-center text-sm font-medium">
-        <div className="inline-flex items-center gap-1 rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-zinc-800 dark:text-zinc-300">
+        <div className="inline-flex items-center gap-1 rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
           <BarChart2 size={12} /> {link.clicks}
         </div>
       </TableCell>
 
-      <TableCell className="px-6 py-4 text-right text-xs text-gray-400 dark:text-zinc-500">
+      <TableCell className="px-6 py-4 text-right text-xs text-gray-400">
         <div className="flex items-center justify-end gap-x-1">
           <Calendar size={12} />
           {new Date(link.created_at).toLocaleDateString('es-ES', {

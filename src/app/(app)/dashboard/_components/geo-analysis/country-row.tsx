@@ -31,17 +31,17 @@ export function CountryRow({ item, totalCount }: CountryRowProps) {
             )}
           </div>
 
-          <span className="max-w-30 truncate text-sm font-medium text-gray-700 dark:text-gray-300">
+          <span className="max-w-30 truncate text-sm font-medium text-gray-700">
             {item.country_name}
           </span>
         </div>
 
-        <span className="animate-in zoom-in text-sm font-bold text-gray-900 duration-300 dark:text-gray-300">
+        <span className="animate-in zoom-in text-sm font-bold text-gray-900 duration-300">
           {item.count}
         </span>
       </div>
 
-      <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-transparent dark:outline">
+      <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
         <div
           className="h-full rounded-full bg-blue-600 transition-all duration-500 ease-out group-hover:bg-blue-500"
           style={{ width: `${percentage}%` }}

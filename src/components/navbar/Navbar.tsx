@@ -22,13 +22,13 @@ export default function Navbar() {
   const definitiveAvatar = getDefaultAvatar(name, avatarUrl);
 
   return (
-    <nav className="flex h-screen w-72 flex-col justify-between border-r border-gray-200 bg-gray-50 transition-all dark:border-zinc-700 dark:bg-zinc-950">
+    <nav className="flex h-screen w-72 flex-col justify-between border-r border-gray-200 bg-gray-50 transition-all">
       <div className="p-4">
         <div className="flex items-center gap-2 rounded-xl px-2 py-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-900 text-white shadow-sm">
             <Command size={16} />
           </div>
-          <span className="text-sm font-bold tracking-tight text-gray-900 dark:text-gray-50">
+          <span className="text-sm font-bold tracking-tight text-gray-900">
             LinkPro
           </span>
           <span className="ml-auto rounded-md bg-gray-200 px-1.5 py-0.5 text-[10px] font-medium text-gray-600">
@@ -48,15 +48,15 @@ export default function Navbar() {
                   href={path.path}
                   className={`group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200 dark:bg-gray-100'
-                      : 'text-gray-500 hover:bg-gray-200/50 hover:text-gray-900 dark:hover:bg-transparent dark:hover:text-gray-400'
+                      ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200'
+                      : 'text-gray-500 hover:bg-gray-200/50 hover:text-gray-900'
                   }`}
                 >
                   <path.icon
                     className={`h-4 w-4 transition-colors ${
                       isActive
                         ? 'text-black'
-                        : 'text-gray-400 group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-400'
+                        : 'text-gray-400 group-hover:text-gray-600'
                     }`}
                   />
                   <span>{path.title}</span>
@@ -67,7 +67,7 @@ export default function Navbar() {
         </ul>
       </div>
 
-      <div className="relative m-3 border-t border-gray-200 pt-3 dark:border-zinc-700">
+      <div className="relative m-3 border-t border-gray-200 pt-3">
         {isMenuOpen && (
           <div
             className="fixed inset-0 z-10 cursor-default"
@@ -101,8 +101,8 @@ export default function Navbar() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className={`flex w-full cursor-pointer items-center gap-3 rounded-xl p-2 transition-all duration-200 ${
             isMenuOpen
-              ? 'bg-white shadow-sm ring-1 ring-gray-200 dark:bg-transparent'
-              : 'hover:bg-gray-200/50 dark:hover:bg-transparent dark:hover:ring-1 dark:hover:ring-zinc-700'
+              ? 'bg-white shadow-sm ring-1 ring-gray-200'
+              : 'hover:bg-gray-200/50'
           }`}
         >
           <Image
@@ -114,7 +114,7 @@ export default function Navbar() {
           />
 
           <div className="flex flex-1 flex-col overflow-hidden text-left">
-            <span className="truncate text-sm font-medium text-gray-900 dark:text-gray-50">
+            <span className="truncate text-sm font-medium text-gray-900">
               {name}
             </span>
             <span className="truncate text-xs text-gray-500">

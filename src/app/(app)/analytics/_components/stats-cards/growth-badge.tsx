@@ -7,8 +7,8 @@ export default function GrowthBadge({ growth }: { growth: number }) {
   const colorClass = isNeutral
     ? 'bg-gray-100 text-gray-600'
     : isPositive
-      ? 'bg-green-50 text-green-600 dark:text-green-700 dark:bg-green-200'
-      : 'bg-red-50 text-red-600 dark:text-red-700 dark:bg-red-200';
+      ? 'bg-green-50 text-green-600'
+      : 'bg-red-50 text-red-600';
 
   const Icon = isNeutral ? Minus : isPositive ? ArrowUpRight : ArrowDownRight;
 
@@ -20,9 +20,7 @@ export default function GrowthBadge({ growth }: { growth: number }) {
         <Icon size={12} />
         <span>{Math.abs(growth)}%</span>
       </span>
-      <span className="text-xs text-gray-400 dark:text-gray-300">
-        vs mes pasado
-      </span>
+      <span className="text-xs text-gray-400">vs mes pasado</span>
     </div>
   );
 }
