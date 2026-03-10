@@ -4,18 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  /* Varainte 1 */
-  --color-cs-primary: #9810fa;
-  --color-cs-secondary: #7c3bed;
-  --color-cs-light: #f7f6f8;
-  --color-cs-dark: #020617;
-
-  /* Varainte 2 */
-  --color-cs1-dark: #0f172a;
-  --color-cs2-dark: #020617;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -134,14 +122,6 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-
-  :root {
-    --color-clicks-chart: #2563eb;
-  }
-
-  .dark {
-    --color-clicks-chart: #93c5fd;
   }
 }
 @custom-variant dark (&:where(.dark, .dark *));
