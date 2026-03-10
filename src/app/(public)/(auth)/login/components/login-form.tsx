@@ -1,12 +1,11 @@
 'use client';
 
 import { useActionState } from 'react';
-import { login, type AuthState } from '@/src/actions/auth/actions';
+import { login, type AuthStateLogIn } from '@/src/actions/auth/actions';
 import Link from 'next/link';
 
-const initialState: AuthState = {
-  message: null,
-  errors: {},
+const initialState: AuthStateLogIn = {
+  message: '',
 };
 
 export function LoginForm() {
@@ -22,6 +21,7 @@ export function LoginForm() {
           id="email"
           name="email"
           type="email"
+          required
           className="rounded-md border border-slate-300 px-3 py-2 text-sm transition-colors outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
         />
       </div>
@@ -37,11 +37,12 @@ export function LoginForm() {
           id="password"
           name="password"
           type="password"
+          required
           className="rounded-md border border-slate-300 px-3 py-2 text-sm transition-colors outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
         />
-        {state?.errors?.password && (
+        {state?.message && (
           <p className="absolute -bottom-6 text-sm text-red-500">
-            {state.errors.password[0]}
+            {state.message}
           </p>
         )}
 

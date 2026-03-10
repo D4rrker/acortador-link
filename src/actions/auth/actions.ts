@@ -4,7 +4,7 @@ import { createClient } from '@/src/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import { authSchema, authSchemaLogin } from '@/src/lib/schemas/auth';
 
-export type AuthState = {
+export type AuthStateSignUp = {
   errors?: {
     name?: string[];
     email?: string[];
@@ -13,7 +13,10 @@ export type AuthState = {
   message?: string | null;
 };
 
-export async function signUp(_prevState: AuthState, formData: FormData) {
+export async function signUp(
+  _prevState: AuthStateSignUp,
+  formData: FormData
+): Promise<AuthStateSignUp> {
   const data = Object.fromEntries(formData);
   const parsed = authSchema.safeParse(data);
 
@@ -53,28 +56,19 @@ export async function signUp(_prevState: AuthState, formData: FormData) {
   redirect(`/verify-email?email=${encodeURIComponent(parsed.data.email)}`);
 }
 
+export type AuthStateLogIn = {
+  message?: string | null;
+};
+
 export async function login(
-  _prevState: AuthState,
+  _prevState: AuthStateLogIn,
   formData: FormData
-): Promise<AuthState> {
+): Promise<AuthStateLogIn> {
   const data = Object.fromEntries(formData);
   const parsed = authSchemaLogin.safeParse(data);
 
   if (!parsed.success) {
-    const fieldErrors = parsed.error.issues.reduce(
-      (acc: Record<string, string[]>, issue) => {
-        const path = issue.path[0] as string;
-
-        if (!acc[path]) {
-          acc[path] = [];
-        }
-
-        acc[path].push(issue.message);
-        return acc;
-      },
-      {}
-    );
-    return { errors: fieldErrors, message: null };
+    return { message: 'Credenciales incorrectas' };
   }
 
   const supabase = await createClient();
@@ -85,7 +79,7 @@ export async function login(
   });
 
   if (error) {
-    return { message: 'Credenciales incorrectas', errors: undefined };
+    return { message: 'Credenciales incorrectas' };
   }
 
   redirect('/dashboard');

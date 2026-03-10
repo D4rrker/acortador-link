@@ -13,8 +13,8 @@ export function SignupForm() {
   const [state, formAction, isPending] = useActionState(signUp, initialState);
 
   return (
-    <form action={formAction} className="w-full space-y-5">
-      <div className="flex flex-col gap-1.5">
+    <form action={formAction} className="w-full space-y-8">
+      <div className="relative flex flex-col gap-1.5">
         <label htmlFor="name" className="text-sm font-medium text-slate-700">
           Nombre
         </label>
@@ -22,14 +22,17 @@ export function SignupForm() {
           id="name"
           name="name"
           type="text"
+          required
           className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 transition-colors outline-none placeholder:text-slate-400 focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
         />
         {state?.errors?.name && (
-          <p className="text-sm text-red-500">{state.errors.name[0]}</p>
+          <p className="absolute -bottom-5 text-sm text-red-500">
+            {state.errors.name[0]}
+          </p>
         )}
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="relative flex flex-col gap-1.5">
         <label htmlFor="email" className="text-sm font-medium text-slate-700">
           Correo Electrónico
         </label>
@@ -37,15 +40,18 @@ export function SignupForm() {
           id="email"
           name="email"
           type="email"
+          required
           placeholder="tu@email.com"
           className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 transition-colors outline-none placeholder:text-slate-400 focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
         />
         {state?.errors?.email && (
-          <p className="text-sm text-red-500">{state.errors.email[0]}</p>
+          <p className="absolute -bottom-5 text-sm text-red-500">
+            {state.errors.email[0]}
+          </p>
         )}
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="relative flex flex-col gap-1.5">
         <label
           htmlFor="password"
           className="text-sm font-medium text-slate-700"
@@ -56,11 +62,14 @@ export function SignupForm() {
           id="password"
           name="password"
           type="password"
+          required
           placeholder="••••••••"
           className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 transition-colors outline-none placeholder:text-slate-400 focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
         />
         {state?.errors?.password && (
-          <p className="text-sm text-red-500">{state.errors.password[0]}</p>
+          <p className="absolute -bottom-5 text-sm text-red-500">
+            {state.errors.password[0]}
+          </p>
         )}
       </div>
 

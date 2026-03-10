@@ -13,8 +13,8 @@ export const authSchema = z.object({
 });
 
 export const authSchemaLogin = z.object({
-  email: z.email({ error: 'Credenciales incorrectas' }),
-  password: z.string({ error: 'Credenciales incorrectas' }),
+  email: z.email(),
+  password: z.string(),
 });
 
 export type AuthFormData = z.infer<typeof authSchema>;
