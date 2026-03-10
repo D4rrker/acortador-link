@@ -1,5 +1,4 @@
 // import ProfileSection from '@/src/app/(app)/settings/_components/profile-section/index';
-import BillingSection from '@/src/app/(app)/settings/_components/billing-section/index';
 // import PreferencesSection from '@/src/app/(app)/settings/_components/preferences-section';
 
 export default function SettingsView() {
@@ -16,7 +15,6 @@ export default function SettingsView() {
 
       <div className="space-y-6">
         {/* <ProfileSection /> */}
-        <BillingSection />
         {/* <PreferencesSection /> */}
       </div>
     </div>
