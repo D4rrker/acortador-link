@@ -1,7 +1,7 @@
 import LinksList from '@/src/app/(app)/dashboard/_components/links-list/index';
 import GeoAnalysisView from '@/src/app/(app)/dashboard/_components/geo-analysis/index';
 import CreateLinkForm from '@/src/app/(app)/dashboard/_components/create-link-form/index';
-import { CountryData } from '@/src/hooks/useRealtimeGeo';
+import { CountryData } from '@/src/app/(app)/dashboard/_hooks/useRealtimeGeo';
 
 import type { ILinkData } from '@/src/app/(app)/dashboard/_types/types';
 

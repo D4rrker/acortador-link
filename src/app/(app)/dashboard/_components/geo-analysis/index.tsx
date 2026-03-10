@@ -2,7 +2,10 @@
 
 import { ExternalLink, Globe } from 'lucide-react';
 import Link from 'next/link';
-import { useRealtimeGeo, type CountryData } from '@/src/hooks/useRealtimeGeo';
+import {
+  useRealtimeGeo,
+  type CountryData,
+} from '@/src/app/(app)/dashboard/_hooks/useRealtimeGeo';
 import { CountryRow } from '@/src/app/(app)//dashboard/_components/geo-analysis/country-row';
 import {
   Card,

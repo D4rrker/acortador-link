@@ -1,4 +1,4 @@
-import type { CountryData } from '@/src/hooks/useRealtimeGeo';
+import type { CountryData } from '@/src/app/(app)/dashboard/_hooks/useRealtimeGeo';
 
 export function processGeoData(
   rpcEvents: { country_code: string; count: number }[] | null

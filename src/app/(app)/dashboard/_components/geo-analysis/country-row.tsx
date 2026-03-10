@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { HelpCircle } from 'lucide-react';
 import { getFlagUrl, isUnknownCountry } from '../../_utils/geo-helpers';
-import type { CountryData } from '@/src/hooks/useRealtimeGeo';
+import type { CountryData } from '@/src/app/(app)/dashboard/_hooks/useRealtimeGeo';
 
 interface CountryRowProps {
   item: CountryData;

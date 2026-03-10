@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRealtimeLinks } from '@/src/app/(app)/dashboard/_hooks/useLinks';
+import { useRealtimeLinks } from '@/src/app/(app)/dashboard/_hooks/useRealtimeLinks';
 import { LinkRow } from '@/src/app/(app)/dashboard/_components/links-list/link-row';
 import { Pagination } from '@/src/app/(app)/dashboard/_components/links-list/pagination';
 import {
