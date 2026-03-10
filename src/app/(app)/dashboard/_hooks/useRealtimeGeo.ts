@@ -22,9 +22,9 @@ export function useRealtimeGeo(
   }, [initialData]);
 
   useEffect(() => {
-    // if (plan === 'free') return;
+    if (plan === 'free') return;
 
-    const channelName = `realtime-geo-${linkId || 'global'}`;
+    const channelName = `realtime-geo-${Date.now()}`;
 
     const channel = supabase
       .channel(channelName)
@@ -71,9 +71,18 @@ export function useRealtimeGeo(
           });
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED') {
+          console.log('🟢 Conectado a Realtime Geo');
+        }
+        if (status === 'TIMED_OUT') {
+          console.error('🔴 Timeout. Intentando reconexión manual...');
+        }
+      });
 
     return () => {
+      console.log(`🧹 Limpiando canal (${channelName})...`);
+
       supabase.removeChannel(channel);
     };
   }, [plan, supabase, linkId]);

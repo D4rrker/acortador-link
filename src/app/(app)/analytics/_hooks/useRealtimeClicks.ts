@@ -21,9 +21,9 @@ export function useRealtimeClicks({
   }, [initialEvents]);
 
   useEffect(() => {
-    // if (plan === 'free' || !plan) return;
+    if (plan === 'free' || !plan) return;
 
-    const channelName = `realtime-clicks-${linkId || 'global'}`;
+    const channelName = `realtime-clicks-${Date.now()}`;
 
     const channel = supabase
       .channel(channelName)
@@ -40,9 +40,17 @@ export function useRealtimeClicks({
           setEvents((prev) => [newEvent, ...prev]);
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED') {
+          console.log('🟢 Conectado a Realtime Clics');
+        }
+        if (status === 'TIMED_OUT') {
+          console.error('🔴 Timeout. Intentando reconexión manual...');
+        }
+      });
 
     return () => {
+      console.log(`🧹 Limpiando canal (${channelName})...`);
       supabase.removeChannel(channel);
     };
   }, [supabase, linkId, plan]);

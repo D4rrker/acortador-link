@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getSupabaseBrowserClient } from '@/src/utils/supabase/client';
 import type { ILinkData } from '@/src/app/(app)/dashboard/_types/types';
 
@@ -8,7 +8,7 @@ export function useRealtimeLinks(
 ) {
   const [links, setLinks] = useState<ILinkData[]>(initialLinks);
 
-  const supabase = getSupabaseBrowserClient();
+  const supabase = useMemo(() => getSupabaseBrowserClient(), []);
 
   useEffect(() => {
     setLinks(initialLinks);

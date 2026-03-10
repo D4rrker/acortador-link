@@ -37,9 +37,9 @@ export default async function AuthLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <div className="grid h-screen grid-cols-[auto_1fr]">
+        <div className="flex min-h-screen flex-col md:grid md:h-screen md:grid-cols-[auto_1fr]">
           <Navbar />
-          <main className="overflow-y-auto px-12 pt-10">
+          <main className="flex min-h-screen flex-1 flex-col overflow-y-auto px-6 py-8 md:px-12 md:pt-10">
             <TooltipProvider>{children}</TooltipProvider>
           </main>
           <Toaster />
