@@ -6,6 +6,7 @@ import { generateShortCode } from '@/src/utils/generate-code';
 import { getUserPlan } from '@/src/app/(app)/dashboard/_lib/queries';
 import { MONTHLY_LIMITS } from '@/src/const/index';
 import { createLinkSchema } from '@/src/app/(app)/dashboard/_schema/index';
+import { isDomainBlocked } from '@/src/utils/blocklist';
 
 export type LinkState = {
   message: string | null;
@@ -15,13 +16,18 @@ export type LinkState = {
 export async function createLink(
   _prevState: LinkState | null,
   formData: FormData
-): Promise<LinkState> {
+): Promise<LinkState | undefined> {
   const rawData = {
     originalUrl: formData.get('originalUrl')?.toString(),
     customSlug: formData.get('customSlug')?.toString(),
   };
 
   const parsed = createLinkSchema.safeParse(rawData);
+  console.log('Links: ', rawData.originalUrl);
+
+  const isBlocked = await isDomainBlocked(rawData.originalUrl);
+
+  if (isBlocked) return;
 
   // ----------Cambiar más adelante----------
   if (!parsed.success) {

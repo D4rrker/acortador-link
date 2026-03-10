@@ -14,7 +14,7 @@ export function LinkRow({ link }: { link: ILinkData }) {
 
   return (
     <TableRow className="group transition-colors">
-      <TableCell className="px-6 py-4">
+      <TableCell className="px-6">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 shrink-0 rounded-full border border-gray-100 bg-white p-1.5 shadow-sm">
             <Image
