@@ -4,19 +4,24 @@ import { createClient as createAdminClient } from '@supabase/supabase-js';
 import { createClient } from '@/src/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { profileSchema } from '@/src/app/(app)/settings/_schemas/index';
+import {
+  profileSchema,
+  passwordSchema,
+} from '@/src/app/(app)/settings/_schemas/index';
 
-type TypeUpdateUSerProfile = {
-  errors: Record<string, string[]> | undefined;
-  message: string | null;
-  success: boolean;
+export type TypeUpdateUserProfile = {
+  errors?: Record<string, string[]> | undefined;
+  message?: string | null;
+  success?: boolean;
+  updatedData?: { name: string; timezone: string };
 };
 
-export const updateUserProfile = async (formData: {
-  name: string;
-  timezone: string;
-}): Promise<TypeUpdateUSerProfile> => {
-  const parsed = profileSchema.safeParse(formData);
+export const updateUserProfile = async (
+  _prevState: TypeUpdateUserProfile,
+  formData: FormData
+): Promise<TypeUpdateUserProfile> => {
+  const data = Object.fromEntries(formData);
+  const parsed = profileSchema.safeParse(data);
 
   if (!parsed.success) {
     const fieldErrors = parsed.error.issues.reduce(
@@ -32,7 +37,11 @@ export const updateUserProfile = async (formData: {
       },
       {}
     );
-    return { errors: fieldErrors, message: 'null', success: false };
+    return {
+      errors: fieldErrors,
+      message: 'Error al actualizar los datos.',
+      success: false,
+    };
   }
 
   const supabase = await createClient();
@@ -47,18 +56,22 @@ export const updateUserProfile = async (formData: {
   if (error) {
     console.error('❌ fn[updateUserProfile] :', error.message);
     return {
-      errors: undefined,
       message: 'No se pudo actualizar los datos, intente de nuevo.',
       success: false,
     };
   }
 
+  await supabase.auth.refreshSession();
+
   revalidatePath('/settings');
 
   return {
-    errors: undefined,
     message: 'Se han actualizado los datos correctamente.',
     success: true,
+    updatedData: {
+      name: parsed.data.name,
+      timezone: parsed.data.timezone,
+    },
   };
 };
 
@@ -96,29 +109,79 @@ export const updateUserAvatar = async (
   return { publicUrl: data.publicUrl };
 };
 
-export const updateUserPassword = async (newPassword: string) => {
+export type TypeUpdateUserPassword = {
+  success: boolean;
+  message?: string | null;
+  errors?: Record<string, string[]>;
+};
+
+export const updateUserPassword = async (
+  _prevState: TypeUpdateUserProfile,
+  formData: FormData
+): Promise<TypeUpdateUserPassword> => {
+  const data = Object.fromEntries(formData);
+  const parsed = passwordSchema.safeParse(data);
+
+  if (!parsed.success) {
+    const fieldErrors = parsed.error.issues.reduce(
+      (acc: Record<string, string[]>, issue) => {
+        const path = issue.path[0] as string;
+
+        if (!acc[path]) {
+          acc[path] = [];
+        }
+
+        acc[path].push(issue.message);
+        return acc;
+      },
+      {}
+    );
+    return {
+      errors: fieldErrors,
+      message: 'Error al cambiar la contraseña.',
+      success: false,
+    };
+  }
+
   const supabase = await createClient();
 
   const { error } = await supabase.auth.updateUser({
-    password: newPassword,
+    password: parsed.data?.password,
   });
 
   if (error) {
     console.error('Error cambiando contraseña:', error.message);
-    return { success: false, error: error.message };
+    return { success: false, message: error.message };
   }
 
-  return { success: true };
+  return { success: true, message: 'Contraseña actualizada con éxito.' };
 };
 
-export const deleteUserAccount = async () => {
+export type TypeDeleteUserAccount = {
+  success: boolean;
+  message?: string | null;
+};
+
+export const deleteUserAccount = async (
+  _prevState: TypeDeleteUserAccount,
+  formData: FormData
+): Promise<TypeDeleteUserAccount> => {
+  const confirmDelete = formData.get('confirmDelete');
+
+  if (!confirmDelete) {
+    return {
+      success: false,
+      message: 'Debes de confirmar que quieres eliminar la cuenta.',
+    };
+  }
+
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return { success: false, error: 'No autorizado' };
+    return { success: false, message: 'No autorizado' };
   }
 
   const avatarUrl = user.user_metadata?.avatar_url;
@@ -144,7 +207,7 @@ export const deleteUserAccount = async () => {
 
   if (error) {
     console.error('Error al borrar cuenta:', error.message);
-    return { success: false, error: error.message };
+    return { success: false, message: error.message };
   }
 
   await supabase.auth.signOut();
