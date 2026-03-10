@@ -15,7 +15,7 @@ export function useRealtimeLinks(
   }, [initialLinks]);
 
   useEffect(() => {
-    if (plan === 'free') return;
+    // if (plan === 'free' || !plan) return;
 
     const channelName = `realtime-links-${Date.now()}`;
 
