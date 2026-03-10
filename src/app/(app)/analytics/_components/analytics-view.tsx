@@ -11,7 +11,7 @@ import MainChart from '@/src/app/(app)/analytics/_components/main-chart/index';
 import DevicesChart from '@/src/app/(app)/analytics/_components/devices-chart/index';
 import LocationsList from '@/src/app/(app)/analytics/_components/locations-list/index';
 import ReferrersList from '@/src/app/(app)/analytics/_components/referrers-list/index';
-import { useRealtimeClicks } from '@/src/hooks/useRealtimeClicks';
+import { useRealtimeClicks } from '@/src/app/(app)/analytics/_hooks/useRealtimeClicks';
 import type { ClickEvent } from '@/src/types';
 
 interface AnalyticsViewProps {

@@ -44,7 +44,7 @@ export default function MainChart({ events, isPro, timezone }: MainChartProps) {
 
   return (
     <Card>
-      <CardHeader className="flex shrink-0 justify-between">
+      <CardHeader className="flex shrink-0 flex-col justify-between md:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1">
           <CardTitle className="text-card-foreground font-semibold">
             Tendencia de Tráfico
@@ -54,7 +54,7 @@ export default function MainChart({ events, isPro, timezone }: MainChartProps) {
           </CardDescription>
         </div>
 
-        <div className="bg-muted/20 flex items-center gap-1 border-t px-4 sm:border-t-0 sm:border-l">
+        <div className="bg-muted/20 flex items-center gap-1 border-t px-4 py-4 sm:border-t-0 sm:border-l lg:py-0">
           {RANGES.map((range) => {
             const isLocked = !isPro && range.isPro;
 
