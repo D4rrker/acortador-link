@@ -18,12 +18,14 @@ interface AnalyticsViewProps {
   initialEvents: ClickEvent[];
   linkId?: number;
   plan?: string;
+  userTimezone: string;
 }
 
 export default function AnalyticsView({
   initialEvents,
   linkId,
   plan = 'free',
+  userTimezone,
 }: AnalyticsViewProps) {
   const { events } = useRealtimeClicks({ initialEvents, linkId, plan });
 
@@ -47,7 +49,7 @@ export default function AnalyticsView({
       <StatsCards stats={stats} />
 
       <div className="w-full">
-        <MainChart events={events} isPro={isPro} />
+        <MainChart events={events} isPro={isPro} timezone={userTimezone} />
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

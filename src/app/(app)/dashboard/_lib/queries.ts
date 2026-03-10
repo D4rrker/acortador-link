@@ -63,3 +63,23 @@ export const getGeoEvents = async (linkIds: number[]) => {
 
   return data || [];
 };
+
+/**
+ * Obtiene el timezone del usuario desde la DB.
+ ** Si hay un error o el usuario no existe, devuelve 'Europe/Madrid' como fallback.
+ * @returns El timezone del usuario o por defecto 'Europe/Madrid'.
+ */
+export const getUserTimeZone = async (): Promise<string> => {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error || !data.user) {
+    console.error('❌ fn[getUserTimeZone]: ', error);
+    return 'Europe/Madrid';
+  }
+
+  const timezone: string = data.user.user_metadata?.timezone || 'Europe/Madrid';
+
+  return timezone;
+};

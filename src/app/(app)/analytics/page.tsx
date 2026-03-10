@@ -1,7 +1,10 @@
 import { createClient } from '@/src/utils/supabase/server';
 
 import AnalyticsView from './_components/analytics-view';
-import { getUserPlan } from '@/src/app/(app)/dashboard/_lib/queries';
+import {
+  getUserPlan,
+  getUserTimeZone,
+} from '@/src/app/(app)/dashboard/_lib/queries';
 import { getFilteredEvents } from '@/src/app/(app)/analytics/_lib/queries';
 import { AnalyticsFilter } from '@/src/components/analytics/analytics-filter';
 
@@ -14,9 +17,10 @@ export default async function AnalyticsPage({
   const activeCode = code;
 
   const supabase = await createClient();
-  const [linksResult, plan] = await Promise.all([
+  const [linksResult, plan, userTimezone] = await Promise.all([
     supabase.from('links').select('id, short_code, original_url'),
     getUserPlan(),
+    getUserTimeZone(),
   ]);
 
   if (plan !== 'pro') {
@@ -52,6 +56,7 @@ export default async function AnalyticsPage({
         initialEvents={events}
         linkId={selectedLinkId}
         plan={plan}
+        userTimezone={userTimezone}
       />
     </div>
   );

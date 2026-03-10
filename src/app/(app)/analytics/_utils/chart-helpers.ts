@@ -33,15 +33,19 @@ const RANGE_CONFIG: Record<
   '90d': { unit: 'day', amount: 89, dateFormat: 'dd MMM' },
 };
 
+const toZonedTime = (date: Date | string, timeZone: string) => {
+  return new Date(new Date(date).toLocaleString('en-US', { timeZone }));
+};
+
 const getDateKey = (date: Date, unit: 'hour' | 'day') => {
-  const iso = date.toISOString();
-  return unit === 'hour' ? iso.substring(0, 13) : iso.substring(0, 10);
+  return format(date, unit === 'hour' ? 'yyyy-MM-dd-HH' : 'yyyy-MM-dd');
 };
 
 export function processChartData(
   events: ClickEvent[],
   range: TimeRange,
-  isPro: boolean
+  isPro: boolean,
+  timezone: string = 'UTC'
 ): ChartDataPoint[] {
   let effectiveRange = range;
   if (!isPro && range !== '24h' && range !== '7d') {
@@ -50,7 +54,7 @@ export function processChartData(
 
   const config = RANGE_CONFIG[effectiveRange] || RANGE_CONFIG['7d'];
 
-  const now = new Date();
+  const now = toZonedTime(new Date(), timezone);
   let intervalDates: Date[] = [];
 
   if (config.unit === 'hour') {
@@ -78,7 +82,7 @@ export function processChartData(
   });
 
   events.forEach((event) => {
-    const eventDate = new Date(event.created_at);
+    const eventDate = toZonedTime(event.created_at, timezone);
     const key = getDateKey(eventDate, config.unit);
 
     const point = lookup.get(key);

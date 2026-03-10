@@ -31,14 +31,15 @@ const chartConfig = {
 interface MainChartProps {
   events: ClickEvent[];
   isPro: boolean;
+  timezone: string;
 }
 
-export default function MainChart({ events, isPro }: MainChartProps) {
+export default function MainChart({ events, isPro, timezone }: MainChartProps) {
   const [timeRange, setTimeRange] = useState<TimeRange>('24h');
 
   const chartData = useMemo(
-    () => processChartData(events, timeRange, isPro),
-    [events, timeRange, isPro]
+    () => processChartData(events, timeRange, isPro, timezone),
+    [events, timeRange, isPro, timezone]
   );
 
   return (
