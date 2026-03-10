@@ -1,10 +1,10 @@
 'use client';
 
 import { useActionState } from 'react';
-import { signUp, type AuthState } from '@/src/actions/auth/actions';
+import { signUp, type AuthStateSignUp } from '@/src/actions/auth/actions';
 import Link from 'next/link';
 
-const initialState: AuthState = {
+const initialState: AuthStateSignUp = {
   message: '',
   errors: {} as Record<string, string[]>,
 };
