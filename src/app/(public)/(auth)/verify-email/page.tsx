@@ -21,7 +21,6 @@ export default async function VerifyEmailPage({ searchParams }: Props) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-6">
       <div className="w-full max-w-md rounded-xl border border-gray-100 bg-white p-8 text-center shadow-md">
-        {/* Icono visual (puedes sustituirlo por un SVG real) */}
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
           <span className="text-2xl text-blue-600">✉️</span>
         </div>

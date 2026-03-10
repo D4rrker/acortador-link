@@ -14,7 +14,6 @@ const DEVICE_NAMES: Record<string, string> = {
 
 const UNKNOWN_COUNTRIES = ['XX', 'Unknown', '??'];
 
-// Helper genérico (Privado, no hace falta exportarlo si solo se usa aquí)
 function getTopMetric<T, K extends keyof T>(data: T[], key: K) {
   if (!data || data.length === 0) return null;
 
@@ -39,7 +38,6 @@ function getTopMetric<T, K extends keyof T>(data: T[], key: K) {
   };
 }
 
-// Función para obtener una lista ordenada (Top X)
 export function getRanking<T, K extends keyof T>(
   data: T[],
   key: K
@@ -54,17 +52,15 @@ export function getRanking<T, K extends keyof T>(
     counts[value] = (counts[value] || 0) + 1;
   });
 
-  // Convertir a array, ordenar y calcular porcentaje
   return Object.keys(counts)
     .map((name) => ({
       name: name === 'Unknown' ? 'Desconocido' : name,
       value: counts[name],
       percent: Math.round((counts[name] / data.length) * 100),
     }))
-    .sort((a, b) => b.value - a.value); // Ordenar de mayor a menor
+    .sort((a, b) => b.value - a.value);
 }
 
-// Función para obtener el la diferencia de clics en % con el mes anteriror
 export function getGrowth(events: ClickEvent[]): number {
   const now = new Date();
 
@@ -75,7 +71,6 @@ export function getGrowth(events: ClickEvent[]): number {
   let currentCount = 0;
   let previousCount = 0;
 
-  // (O(n) - una sola pasada)
   events.forEach((event) => {
     const date = new Date(event.created_at);
 
@@ -90,13 +85,11 @@ export function getGrowth(events: ClickEvent[]): number {
     return currentCount > 0 ? 100 : 0;
   }
 
-  // 4. Cálculo del porcentaje
   const growth = ((currentCount - previousCount) / previousCount) * 100;
 
   return Math.round(growth);
 }
 
-// Función Principal: Procesa los datos crudos y devuelve las stats listas
 export function processAnalyticsStats(events: ClickEvent[]): AnalyticsStats {
   const topCountryData = getTopMetric(events, 'country');
   const topDeviceData = getTopMetric(events, 'device_type');

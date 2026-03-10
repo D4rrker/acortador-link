@@ -1,6 +1,5 @@
 import type { CountryData } from '@/src/hooks/useRealtimeGeo';
 
-// Transforma eventos crudos en lista ordenada
 export function processGeoData(
   rpcEvents: { country_code: string; count: number }[] | null
 ): CountryData[] {
@@ -8,7 +7,6 @@ export function processGeoData(
 
   const regionNames = new Intl.DisplayNames(['es'], { type: 'region' });
 
-  // Ya no hay 'aggregator' ni '.forEach'. Solo traducimos los 4 resultados.
   return rpcEvents.map((event) => {
     const rawCode = event.country_code;
     const isUnknown = rawCode === 'XX' || rawCode === 'Unknown' || !rawCode;
@@ -21,12 +19,11 @@ export function processGeoData(
     return {
       country_code: isUnknown ? '??' : rawCode,
       country_name: name,
-      count: Number(event.count), // Supabase devuelve BIGINT, lo pasamos a Number
+      count: Number(event.count),
     };
   });
 }
 
-// Lógica visual de banderas
 export function getFlagUrl(countryCode: string) {
   let code = countryCode.toLowerCase();
   if (code === 'uk') code = 'gb';

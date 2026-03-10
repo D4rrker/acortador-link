@@ -26,7 +26,6 @@ export function AnalyticsFilter({ links, plan }: AnalyticsFilter) {
   const [query, setQuery] = useState('');
   const isPro = plan === 'pro';
 
-  // Más adelante habrá que hacerlo (server-side), pero por ahora lo hacemos (client-side) para no complicar el código
   const filteredLinks =
     query === ''
       ? links

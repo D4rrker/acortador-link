@@ -40,28 +40,24 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
   const path = request.nextUrl.pathname;
 
-  // Si no estás logueado
   const protectedPaths = ['/dashboard'];
 
   const isProtectedRoute = protectedPaths.some((protectedPath) =>
     path.startsWith(protectedPath)
   );
 
-  // Si sí está logueado
   const publicAuthPaths = ['/login', '/register', '/verify-email'];
 
   const isPublicAuthRoute = publicAuthPaths.some((publicPath) =>
     path.startsWith(publicPath)
   );
 
-  // Proteger rutas privadas (Si no hay usuario, al login)
   if (!user && isProtectedRoute) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
     return NextResponse.redirect(url);
   }
 
-  // Redirigir usuarios logueados lejos de las rutas públicas de auth
   if (user && isPublicAuthRoute) {
     const url = request.nextUrl.clone();
     url.pathname = '/dashboard';
