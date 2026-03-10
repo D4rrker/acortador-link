@@ -16,8 +16,7 @@ export default function Navbar() {
 
   const { user } = useUser();
 
-  const { email, name, plan, avatarUrl } = user || {};
-  const userPlan: string = plan || 'free';
+  const { email, name, avatarUrl } = user || {};
 
   const definitiveAvatar = getDefaultAvatar(name, avatarUrl);
 
@@ -116,11 +115,6 @@ export default function Navbar() {
           <div className="flex flex-1 flex-col overflow-hidden text-left">
             <span className="truncate text-sm font-medium text-gray-900">
               {name}
-            </span>
-            <span className="truncate text-xs text-gray-500">
-              {userPlan === 'free'
-                ? 'Plan Gratis'
-                : `Plan ${userPlan.charAt(0).toUpperCase() + userPlan.slice(1)}`}
             </span>
           </div>
 
