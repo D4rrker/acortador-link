@@ -45,6 +45,8 @@ export async function signUp(
       emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
       data: {
         name: parsed.data.name,
+        plan: 'pro',
+        timezone: 'Europe/Madrid',
       },
     },
   });
