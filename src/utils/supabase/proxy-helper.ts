@@ -46,7 +46,7 @@ export async function updateSession(request: NextRequest) {
     path.startsWith(protectedPath)
   );
 
-  const publicAuthPaths = ['/login', '/register', '/verify-email'];
+  const publicAuthPaths = ['/login', '/sign-up', '/verify-email'];
 
   const isPublicAuthRoute = publicAuthPaths.some((publicPath) =>
     path.startsWith(publicPath)
