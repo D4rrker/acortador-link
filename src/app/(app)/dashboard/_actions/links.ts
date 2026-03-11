@@ -23,7 +23,6 @@ export async function createLink(
   };
 
   const parsed = createLinkSchema.safeParse(rawData);
-  console.log('Links: ', rawData.originalUrl);
 
   const isBlocked = await isDomainBlocked(rawData.originalUrl);
 
