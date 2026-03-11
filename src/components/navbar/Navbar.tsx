@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { signOutAction } from '@/src/actions/auth/actions';
 import { LogOut, Command, ChevronsUpDown, Menu, X } from 'lucide-react';
 import { useUser } from '@/src/context/UserContext';
@@ -13,10 +13,28 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const { user } = useUser();
   const { email, name, avatarUrl } = user || {};
   const definitiveAvatar = getDefaultAvatar(name, avatarUrl);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <>
       <div className="flex h-16 w-full items-center justify-between border-b border-gray-200 bg-gray-50 px-4 md:hidden">
@@ -67,7 +85,10 @@ export default function Navbar() {
 
         <div className="relative m-3 border-t border-gray-200 pt-3">
           {isMenuOpen && (
-            <div className="animate-in fade-in slide-in-from-bottom-2 absolute bottom-full left-0 z-20 mb-2 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl">
+            <div
+              ref={menuRef}
+              className="animate-in fade-in slide-in-from-bottom-2 absolute bottom-full left-0 z-20 mb-2 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl"
+            >
               <div className="border-b border-gray-100 bg-gray-50/50 px-4 py-2.5">
                 <p className="text-xs font-medium text-gray-500">
                   Conectado como
