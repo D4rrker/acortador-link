@@ -38,7 +38,7 @@ export default function GeoAnalysisView({ initialData }: Props) {
           <Globe size={16} className="text-gray-400" />
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex h-full flex-col justify-between">
         <div>
           <div className="space-y-6">
             {data.length > 0 ? (
