@@ -14,9 +14,9 @@ export type LinkState = {
 };
 
 export async function createLink(
-  _prevState: LinkState | null,
+  _prevState: LinkState,
   formData: FormData
-): Promise<LinkState | undefined> {
+): Promise<LinkState> {
   const rawData = {
     originalUrl: formData.get('originalUrl')?.toString(),
     customSlug: formData.get('customSlug')?.toString(),
@@ -26,7 +26,7 @@ export async function createLink(
 
   const isBlocked = await isDomainBlocked(rawData.originalUrl);
 
-  if (isBlocked) return;
+  if (isBlocked) return { message: '', errors: {} };
 
   // ----------Cambiar más adelante----------
   if (!parsed.success) {
