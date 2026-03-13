@@ -10,7 +10,7 @@ import StatsCards from '@/src/app/(app)/analytics/_components/stats-cards/index'
 import MainChart from '@/src/app/(app)/analytics/_components/main-chart/index';
 import DevicesChart from '@/src/app/(app)/analytics/_components/devices-chart/index';
 import LocationsList from '@/src/app/(app)/analytics/_components/locations-list/index';
-import ReferrersList from '@/src/app/(app)/analytics/_components/referrers-list/index';
+// import ReferrersList from '@/src/app/(app)/analytics/_components/referrers-list/index';
 import { useRealtimeClicks } from '@/src/app/(app)/analytics/_hooks/useRealtimeClicks';
 import type { ClickEvent } from '@/src/types';
 
@@ -40,7 +40,7 @@ export default function AnalyticsView({
 
   const topCountries = useMemo(() => getRanking(events, 'country'), [events]);
   const topDevices = useMemo(() => getRanking(events, 'device_type'), [events]);
-  const topReferrers = useMemo(() => getRanking(events, 'referrer'), [events]);
+  // const topReferrers = useMemo(() => getRanking(events, 'referrer'), [events]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -58,7 +58,7 @@ export default function AnalyticsView({
         <div className="flex flex-col gap-6">
           <DevicesChart data={topDevices} />
 
-          <ReferrersList data={topReferrers} isPro={isPro} />
+          {/* <ReferrersList data={topReferrers} isPro={isPro} />  */}
         </div>
       </div>
     </div>
