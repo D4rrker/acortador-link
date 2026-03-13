@@ -6,7 +6,6 @@ import { Toaster } from '@/src/components/ui/sonner';
 import { TooltipProvider } from '@/src/components/ui/tooltip';
 import { UserProvider } from '@/src/context/UserContext';
 import { getUserBasicData } from '@/src/lib/queries';
-import { ThemeProvider } from '@/src/components/theme-provider';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -31,20 +30,13 @@ export default async function AuthLayout({
 
   return (
     <UserProvider initialData={initialUserData}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <div className="flex min-h-screen flex-col md:grid md:h-screen md:grid-cols-[auto_1fr]">
-          <Navbar />
-          <main className="flex min-h-screen flex-1 flex-col overflow-y-auto px-6 py-8 md:px-12 md:pt-10">
-            <TooltipProvider>{children}</TooltipProvider>
-          </main>
-          <Toaster />
-        </div>
-      </ThemeProvider>
+      <div className="flex min-h-screen flex-col md:grid md:h-screen md:grid-cols-[auto_1fr]">
+        <Navbar />
+        <main className="flex min-h-screen flex-1 flex-col overflow-y-auto px-6 py-8 md:px-12 md:pt-10">
+          <TooltipProvider>{children}</TooltipProvider>
+        </main>
+        <Toaster />
+      </div>
     </UserProvider>
   );
 }
