@@ -12,7 +12,18 @@ export async function GET(
   const city = request.headers.get('x-vercel-ip-city') || 'Unknown';
   const ip = request.headers.get('x-forwarded-for') || 'Unknown';
   const userAgent = request.headers.get('user-agent') || 'Unknown';
-  const referer = request.headers.get('referer') || 'Directo';
+  const rawReferer =
+    request.headers.get('referer') || request.headers.get('referrer');
+  let referer = 'Directo';
+
+  if (rawReferer && rawReferer !== 'null') {
+    try {
+      const url = new URL(rawReferer);
+      referer = url.hostname.replace('www.', '');
+    } catch {
+      referer = rawReferer;
+    }
+  }
 
   const parser = new UAParser(userAgent);
   const result = parser.getResult();
