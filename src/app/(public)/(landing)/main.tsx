@@ -65,14 +65,8 @@ export default function Main() {
       </main>
 
       <footer className="border-t border-slate-200 bg-white py-8 text-center text-sm text-slate-500">
-        <div className="flex items-center justify-center gap-4">
-          <Link href="#" className="transition-colors hover:text-blue-900">
-            Política de privacidad
-          </Link>
-          <span>•</span>
-          <Link href="#" className="transition-colors hover:text-blue-900">
-            Contacto
-          </Link>
+        <div className="flex items-center justify-center gap-3">
+          <span>&copy;2026 - LinkPro</span>
         </div>
       </footer>
     </div>
