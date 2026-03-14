@@ -18,4 +18,6 @@ Para mantener un historial limpio y estructurado, este proyecto utiliza el está
 
 * **`test`**: Añadir o corregir pruebas automatizadas. *(Ejemplo: `test: verificar cálculo de clics totales`)*
 
+* **`assets`**: Añadir o actualizar archivos de imagen, iconos, logos o recursos multimedia. *(Ejemplo: `assets: añadir iconos de alta resolución y og-image`)*
+
 
