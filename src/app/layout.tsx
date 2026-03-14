@@ -8,9 +8,41 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Acortador de links',
+  title: {
+    default: 'Acortador de Enlaces y Analíticas | LinkPro',
+    template: '%s | LinkPro',
+  },
   description:
-    'Acorta links de totalmente gratis. Regístrate de forma gratuita para poder ver las analíticas de tus enlaces acortados.',
+    'Gestiona y optimiza tus enlaces con analíticas detalladas en tiempo real.',
+  icons: {
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
+  openGraph: {
+    title: 'LinkPro | Acortador de Enlaces y Analíticas',
+    description:
+      'Acorta tus enlaces y analiza el tráfico en tiempo real de forma gratuita.',
+    url: 'https://linkpro.li',
+    siteName: 'LinkPro',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'LinkPro Dashboard Preview',
+      },
+    ],
+    locale: 'es_ES',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LinkPro | Acortador de Enlaces',
+    description: 'Gestiona tus links con estadísticas profesionales.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({

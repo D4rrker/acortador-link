@@ -1,9 +1,9 @@
-// src/app/login/page.tsx
 import { LoginForm } from '@/src/app/(public)/(auth)/login/components/login-form';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Iniciar Sesión | TuSaaS',
+  title: 'Iniciar Sesión',
+  description: 'Accede a tu cuenta de LinkPro para gestionar tus enlaces.',
 };
 
 export default function LoginPage() {

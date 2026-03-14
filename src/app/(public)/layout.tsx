@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Acortador de links',
+  title: 'Acortador de Enlaces Gratis y Analíticas en Tiempo Real',
   description:
-    'Acorta links de totalmente gratis. Regístrate de forma gratuita para poder ver las analíticas de tus enlaces acortados.',
+    'Acorta tus links gratis y obtén estadísticas detalladas. Regístrate en LinkPro para gestionar tus URLs en tiempo real.',
 };
 
 export default function RootLayout({

@@ -3,8 +3,9 @@ import { Metadata } from 'next';
 import CsCard from '@/src/components/custom/Card';
 
 export const metadata: Metadata = {
-  title: 'Crear Cuenta | LinkPro',
-  description: 'Únete a la plataforma líder de acortamiento de enlaces.',
+  title: 'Crear cuenta',
+  description:
+    'Regístrate en LinkPro gratis para empezar a acortar tus enlaces y acceder a estadísticas detalladas en tiempo real.',
 };
 
 export default function SignupPage() {

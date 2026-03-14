@@ -3,7 +3,12 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: 'Revisa tu correo | TuSaaS',
+  title: 'Verificar correo',
+  description:
+    'Confirma tu dirección de correo electrónico para activar tu cuenta y empezar a gestionar tus enlaces en LinkPro.',
+  robots: {
+    index: false,
+  },
 };
 
 type Props = {
